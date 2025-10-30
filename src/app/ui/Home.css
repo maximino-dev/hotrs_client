@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+}
+
+.App {
+  height: 100vh;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #3366ff 0%, #66ccff 100%);
+}
+
+.Logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20vh;
+}
+
+.home-button {
+  margin: 50px;
+  padding: 30px;
+  color: white;
+}
+
+
+/* Buttons create and join a party */
+.join {
+  background-color: #3366ff;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+.join:hover {
+  box-shadow: rgba(134, 237, 228, 0.4) -5px 5px, rgba(134, 237, 228, 0.3) -10px 10px, rgba(134, 237, 228, 0.2) -15px 15px, rgba(134, 237, 228, 0.1) -20px 20px;  transform: scale(1.05) rotate(1deg);
+}
+
+.create {
+  background-color: #3366ff;
+  border-radius: 100px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.create:hover {
+  box-shadow: rgba(134, 237, 228, 0.4) 5px 5px, rgba(134, 237, 228, 0.3) 10px 10px, rgba(134, 237, 228, 0.2) 15px 15px, rgba(134, 237, 228, 0.1) 20px 20px;  transform: scale(1.05) rotate(1deg);
+  transform: scale(1.05) rotate(-1deg);
+}
+/**/

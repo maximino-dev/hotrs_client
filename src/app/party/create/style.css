@@ -1,0 +1,16 @@
+.App {
+  background: linear-gradient(to bottom, #3366ff 0%, #66ccff 100%);
+}
+
+@keyframes pulseBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.beat {
+  animation: pulseBeat 1s infinite;
+}
