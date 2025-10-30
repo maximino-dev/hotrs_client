@@ -1,1 +1,3 @@
-# Client for Hotrs More info on hotrs.fr
+# Client for Hotrs 
+
+More info on hotrs.fr
