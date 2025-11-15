@@ -32,8 +32,14 @@ export function Infos({ players, partyId, owner, handleStartGame, started }: Inf
         {players.map((player) => (
           <li key={player.id} className="flex items-center justify-between border-b py-1">
             <span>{player.username}</span>
-            { player.foundTitle && (<MusicalNoteIcon className="w-5 h-5 text-black" />) }
-            { player.foundArtist && (<UserIcon className="w-5 h-5 text-black" />) }
+            { player.foundTitle && (<span className="flex items-center gap-1">
+                <MusicalNoteIcon className="w-5 h-5 text-black" />
+                <span className="ml-1 text-xs text-black">{player.timeTitle}s</span>
+              </span>) }
+            { player.foundArtist && (<span className="flex items-center gap-1">
+                <UserIcon className="w-5 h-5 text-black" />
+                <span className="ml-1 text-xs text-black">{player.timeArtist}s</span>
+              </span>) }
             <span className="text-sm text-gray-500">{player.score} pts</span>
           </li>
         ))}

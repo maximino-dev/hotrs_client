@@ -34,6 +34,13 @@ return (
           >
             Rejoindre une partie
           </button>
+
+          <button
+            onClick={() => router.push("/modes/solos")}
+            className="w-full bg-blue-400 hover:bg-blue-700 text-white py-3 rounded text-lg font-semibold shadow"
+          >
+            Mode Solos
+          </button>
         </div>
       </div>
     </div>

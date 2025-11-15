@@ -1,0 +1,95 @@
+.App {
+  background: linear-gradient(to bottom, #3366ff 0%, #66ccff 100%);
+}
+
+@keyframes pulseBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.beat {
+  animation: pulseBeat 0.2s;
+}
+
+.wrong {
+  animation: wrongShake 0.25s ease-in-out;
+}
+
+@keyframes wrongShake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-3deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.track-counter {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 28px;
+  font-weight: 700;
+  color: #003366; /* bleu foncé */
+  font-family: "Poppins", "Inter", "Helvetica", sans-serif;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+  border-radius: 8px;
+}
+
+.found-wrapper {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.found-tag {
+  display: inline-flex !important; /* force horizontal */
+  flex-direction: row !important;  /* empêche la colonne */
+  align-items: center !important;  /* centre verticalement */
+  gap: 6px;
+
+  padding: 6px 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  font-size: 15px;
+  color: white;
+  white-space: nowrap;             /* empêche les retours à la ligne */
+  opacity: 0;
+  animation: found-appear 0.35s ease forwards;
+}
+
+/* Icônes forcent la taille correcte */
+.found-tag .icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0; /* empêche l’icône de se compresser */
+}
+
+
+/* Couleurs */
+.found-tag.artist {
+  background-color: #1a4d8a;
+}
+
+.found-tag.title {
+  background-color: #3c7ddc;
+}
+
+/* Animation */
+@keyframes found-appear {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

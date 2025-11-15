@@ -19,13 +19,16 @@ function JoinParty() {
   const [artistTitle, setArtistTitle] = useState("");
   const [trackInfo, setTrackInfo] = useState({ title: '', artist: '', coverUrl: '' });
   const [finished, setFinished] = useState(false);
+  const [trackStartTime, setTrackStartTime] = useState(null); // temps de début de la musique en ms
 
   const socketRef = useRef(null);
   const partyIdRef = useRef(null);
 
+  const URL = "http://localhost:3001" // https://hotrs.fr
+
   useEffect(() => {
 
-    socketRef.current = io("https://hotrs.fr");
+    socketRef.current = io(URL);
 
     const socket = socketRef.current;
 
@@ -51,6 +54,7 @@ function JoinParty() {
     });
 
     socket.on("playTrack", ({ preview_link }) => {
+      setTrackStartTime(Date.now());
       setAudioUrl(preview_link);
       setArtistTitle("");
     });
@@ -98,6 +102,11 @@ function JoinParty() {
       return;
     }
 
+    if (username.length > 20) {
+      setError("Pseudo trop long (20 caractères max).");
+      return;  
+    }
+
     socketRef.current.emit("joinParty", { partyId, username }, (response) => {
       if (response.success) {
         setJoined(true);
@@ -114,7 +123,14 @@ function JoinParty() {
   const handleAnswer = (e) => {
     e.preventDefault();
 
-    socketRef.current.emit("playerAnswer", { partyId: partyId, artistTitle: artistTitle }, (response) => {
+    if (!trackStartTime) {
+      return;
+    }
+
+    const elapsedTime = Date.now() - trackStartTime; // en ms
+    const elapsedSeconds = (elapsedTime / 1000).toFixed(2); // secondes avec 2 décimales
+
+    socketRef.current.emit("playerAnswer", { partyId: partyId, artistTitle: artistTitle, time: elapsedTime }, (response) => {
       if (response.success) {
         const res = response.result;
         if (res === "both") {
@@ -184,7 +200,7 @@ function JoinParty() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
-                  placeholder="Ex: Alice"
+                  placeholder="Ex: FantasioDu98"
                 />
               </div>
 

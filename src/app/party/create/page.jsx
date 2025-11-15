@@ -28,19 +28,22 @@ function CreateParty() {
   const [trackInfo, setTrackInfo] = useState({ title: '', artist: '', coverUrl: '' });
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [trackStartTime, setTrackStartTime] = useState(null); // temps de début de la musique en ms 
 
   const socketRef = useRef(null);
   const partyIdRef = useRef(null);
 
+  const URL = "http://localhost:3001" // https://hotrs.fr
+
   // Fetch genres on component mount
   useEffect(() => {
-    socketRef.current = io("https://hotrs.fr");
+    socketRef.current = io(URL);
 
     const socket = socketRef.current;
 
     const getGenres = async () => {
       try {
-        const res = await axios.get('https://hotrs.fr/api/genres');
+        const res = await axios.get(URL + '/api/genres');
         setGenres(res.data); // res.data is an array of genres
       } catch (error) {
         console.error('Erreur API (genres):', error);
@@ -58,6 +61,7 @@ function CreateParty() {
       if (!started) {
         setStarted(true);
       }
+      setTrackStartTime(Date.now());
       setAudioUrl(preview_link);
       setArtistTitle("");
       setTimeout(() => {
@@ -113,6 +117,11 @@ function CreateParty() {
       return;
     }
 
+    if (username.length > 20) {
+      setError("Pseudo trop long (20 caractères max).");
+      return;  
+    }
+
     if (yearMin > yearMax) {
       setError("L'année de début doit être inférieure à celle de fin !");
       return;
@@ -152,7 +161,14 @@ function CreateParty() {
   const handleAnswer = (e) => {
     e.preventDefault();
 
-    socketRef.current.emit("playerAnswer", { partyId: partyId, artistTitle: artistTitle }, (response) => {
+    if (!trackStartTime) {
+      return;
+    }
+
+    const elapsedTime = Date.now() - trackStartTime; // en ms
+    const elapsedSeconds = (elapsedTime / 1000).toFixed(2); // secondes avec 2 décimales
+
+    socketRef.current.emit("playerAnswer", { partyId: partyId, artistTitle: artistTitle, time: elapsedTime }, (response) => {
       if (response.success) {
         const res = response.result;
         if (res === "both") {
