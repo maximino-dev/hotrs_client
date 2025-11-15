@@ -11,6 +11,8 @@ type Player = {
   foundTitle?: boolean;
   foundArtist?: boolean;
   score: number;
+  timeTitle: number;
+  timeArtist: number;
 };
 
 // Props pour le composant Infos
