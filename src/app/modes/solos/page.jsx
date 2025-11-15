@@ -33,7 +33,7 @@ function ModeSolo() {
 	const socketRef = useRef(null);
   const partyIdRef = useRef(null);
 
-  const URL = "http://localhost:3001" // https://hotrs.fr
+  const URL = "https://hotrs.fr" // "http://localhost:3001"
 
   // Fetch genres on component mount
   useEffect(() => {

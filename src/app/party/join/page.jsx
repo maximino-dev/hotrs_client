@@ -24,7 +24,7 @@ function JoinParty() {
   const socketRef = useRef(null);
   const partyIdRef = useRef(null);
 
-  const URL = "http://localhost:3001" // https://hotrs.fr
+  const URL = "https://hotrs.fr" // "http://localhost:3001" //
 
   useEffect(() => {
 
