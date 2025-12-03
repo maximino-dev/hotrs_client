@@ -130,15 +130,24 @@ function ModeSolo() {
         setTimeout(() => setAnimateInput(false), 250);
         setScore(response.score); // met à jour le score affiché
         if (response.result === "both") {
-          setTimeArtist(elapsedSeconds);
-          setTimeTitle(elapsedSeconds);
+          if (timeArtist == null) {
+            setTimeArtist(elapsedSeconds);
+          }
+          if (timeTitle == null) {
+            setTimeTitle(elapsedSeconds);
+          }
+
           setFoundTitle(true);
           setFoundArtist(true);
         } else if (response.result === "title") {
-          setTimeTitle(elapsedSeconds);
+          if (timeTitle == null) {
+            setTimeTitle(elapsedSeconds);
+          }
           setFoundTitle(true);
         } else {
-          setTimeArtist(elapsedSeconds);
+          if (timeArtist == null) {
+            setTimeArtist(elapsedSeconds);
+          }
           setFoundArtist(true);
         }
       } else {
