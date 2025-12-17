@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 function Home() {
   const router = useRouter();
 return (
-    <div className="App min-h-screen flex items-center justify-center px-4">
+    <div className="App min-h-screen flex flex-col items-center justify-center px-4 bg-blue-400">
       <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-md flex flex-col items-center space-y-6">
 
         {/* Logo */}
@@ -42,6 +42,17 @@ return (
             Mode Solos
           </button>
         </div>
+      </div>
+      <div className="pt-50 flex-col">
+        <button
+              onClick={() => router.push("/contribute")}
+              className="text-blue-500 p-3 rounded text-lg font-semibold cursor-pointer"
+            >Ajouter des sons</button>
+
+                <button
+              onClick={() => router.push("/legal")}
+              className="text-blue-500 p-3 rounded text-lg font-semibold cursor-pointer"
+            >Mentions légales</button>
       </div>
     </div>
   );

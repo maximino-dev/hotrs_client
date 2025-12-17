@@ -1,13 +1,9 @@
-body {
-  margin: 0;
-}
-
 .App {
-  height: 100vh;
+  min-height: 100vh;
+  background: transparent;
   text-align: center;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #3366ff 0%, #66ccff 100%);
 }
 
 .Logo {
